@@ -31,7 +31,7 @@ allprojects {
 在app目录下的build.gradle添加依赖使用：
 ```java
 dependencies {
-    implementation 'com.github.samlss:CoffeeView:1.0'
+    implementation 'com.github.samlss:CoffeeView:1.1'
 }
 ```
 
