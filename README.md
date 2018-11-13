@@ -33,7 +33,7 @@ allprojects {
 Add it in your app build.gradle at the end of repositories:
 ```java
 dependencies {
-    implementation 'com.github.samlss:CoffeeView:1.0'
+    implementation 'com.github.samlss:CoffeeView:1.1'
 }
 ```
 
