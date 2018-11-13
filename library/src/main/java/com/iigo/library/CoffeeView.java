@@ -121,7 +121,6 @@ public class CoffeeView extends View {
         mCalculatePath = new Path();
         mCalculateMatrix = new Matrix();
 
-        mAnimatorSet = new AnimatorSet();
         mValueAnimators = new ArrayList<>();
     }
 
@@ -281,8 +280,6 @@ public class CoffeeView extends View {
             valueAnimator.setRepeatMode(ValueAnimator.RESTART);
             mValueAnimators.add(valueAnimator);
         }
-
-        mAnimatorSet.playTogether(mValueAnimators);
     }
 
     @Override
@@ -320,15 +317,11 @@ public class CoffeeView extends View {
      * Start animation.
      * */
     public void start(){
-        if (mAnimatorSet != null && !mAnimatorSet.isRunning()){
-            for (int i = 0; i < VAPOR_COUNT; i++){
-                mAnimatorValues[i] = 0;
-                postInvalidate();
-            }
+        stop();
 
-            mAnimatorSet.playTogether(mValueAnimators);
-            mAnimatorSet.start();
-        }
+        mAnimatorSet = new AnimatorSet();
+        mAnimatorSet.playTogether(mValueAnimators);
+        mAnimatorSet.start();
     }
 
     /**
@@ -337,10 +330,7 @@ public class CoffeeView extends View {
     public void stop(){
         if (mAnimatorSet != null && mAnimatorSet.isRunning()){
             mAnimatorSet.cancel();
-
-            for (Animator animator : mValueAnimators){
-                animator.cancel();
-            }
+            mAnimatorSet = null;
         }
     }
 
